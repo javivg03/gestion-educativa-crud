@@ -1,0 +1,139 @@
+/* ========================================
+   Estilos Personalizados Modernos para Gestión Académica
+======================================== */
+
+/* Base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.hero-text {
+  text-align: center;
+  padding: 0 20px;
+}
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.hero-text p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Tarjetas (Cards) */
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.card-body {
+  padding: 1rem;
+}
+.card-footer {
+  background-color: #e9ecef;
+  padding: 0.75rem 1rem;
+}
+
+/* Formularios */
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Contenedores y Espaciado */
+.container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40;
+  color: #ccc;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .hero {
+    height: 300px;
+  }
+  .hero-text h1 {
+    font-size: 2.25rem;
+  }
+  .hero-text p {
+    font-size: 1rem;
+  }
+}

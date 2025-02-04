@@ -1,0 +1,12 @@
+com\jsp\gestion\educativa\crud\JakartaRestConfiguration.class
+com\jsp\gestion\educativa\crud\resources\JakartaEE11Resource.class
+models\ResultadoAprendizaje.class
+models\CriterioEvaluacion.class
+models\Asignatura.class
+dao\CriterioEvaluacionDAO.class
+controller\ResultadoController.class
+util\Database.class
+controller\CriterioController.class
+dao\AsignaturaDAO.class
+dao\ResultadoAprendizajeDAO.class
+controller\AsignaturaController.class
