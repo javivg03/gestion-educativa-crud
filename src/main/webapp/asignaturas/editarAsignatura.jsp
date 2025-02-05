@@ -9,6 +9,7 @@
         <link href="../css/style.css" rel="stylesheet">
     </head>
     <body>
+        <%@ include file="../header.jsp" %>
         <div class="main-container centered mt-30">
             <h1>Editar Asignatura</h1>
             <%
@@ -16,7 +17,8 @@
                 Asignatura a = AsignaturaController.obtenerPorId(id);
                 if ("POST".equalsIgnoreCase(request.getMethod())) {
                     String nombre = request.getParameter("nombre");
-                    AsignaturaController.actualizar(id, nombre);
+                    String descripcion = request.getParameter("descripcion");
+                    AsignaturaController.actualizar(id, nombre, descripcion);
                     response.sendRedirect("asignaturas.jsp");
                     return;
                 }
@@ -27,11 +29,16 @@
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" value="<%= a.getNombre()%>" required>
                 </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>  <!-- Campo para descripción -->
+                    <textarea class="form-control" id="descripcion" name="descripcion" required><%= a.getDescripcion()%></textarea>
+                </div>
                 <button type="submit" class="btn-custom">Actualizar</button>
                 <a href="asignaturas.jsp" class="btn-outline" style="margin-left:10px;">Cancelar</a>
             </form>
         </div>
 
         <script src="../js/bootstrap.min.js"></script>
+        <%@ include file="../footer.jsp" %>
     </body>
 </html>

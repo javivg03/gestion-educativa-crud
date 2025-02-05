@@ -9,6 +9,7 @@
         <link href="../css/style.css" rel="stylesheet">
     </head>
     <body>
+        <%@ include file="../header.jsp" %>
         <div class="main-container centered mt-30">
             <h1>Editar Resultado de Aprendizaje</h1>
             <%
@@ -46,5 +47,6 @@
         </div>
 
         <script src="../js/bootstrap.min.js"></script>
+        <%@ include file="../footer.jsp" %>
     </body>
 </html>

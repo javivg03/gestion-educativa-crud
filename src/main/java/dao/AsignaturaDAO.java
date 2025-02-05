@@ -17,7 +17,8 @@ public class AsignaturaDAO {
             while (rs.next()) {
                 Asignatura a = new Asignatura(
                         rs.getInt("id"),
-                        rs.getString("nombre")
+                        rs.getString("nombre"),
+                        rs.getString("descripcion") 
                 );
                 list.add(a);
             }
@@ -29,10 +30,11 @@ public class AsignaturaDAO {
 
     // Inserta una nueva asignatura en la tabla
     public void insertarAsignatura(Asignatura a) {
-        String sql = "INSERT INTO asignaturas (nombre) VALUES (?)";
+        String sql = "INSERT INTO asignaturas (nombre, descripcion) VALUES (?, ?)";
         try (Connection con = Database.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, a.getNombre());
+            ps.setString(2, a.getDescripcion()); 
             ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -41,10 +43,11 @@ public class AsignaturaDAO {
 
     // Actualiza una asignatura existente
     public void actualizarAsignatura(Asignatura a) {
-        String sql = "UPDATE asignaturas SET nombre = ? WHERE id = ?";
+        String sql = "UPDATE asignaturas SET nombre = ?, descripcion = ? WHERE id = ?";
         try (Connection con = Database.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, a.getNombre());
+            ps.setString(2, a.getDescripcion()); 
             ps.setInt(3, a.getId());
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -75,7 +78,8 @@ public class AsignaturaDAO {
                 if (rs.next()) {
                     a = new Asignatura(
                             rs.getInt("id"),
-                            rs.getString("nombre")
+                            rs.getString("nombre"),
+                            rs.getString("descripcion") 
                     );
                 }
             }

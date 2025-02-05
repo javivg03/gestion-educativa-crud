@@ -14,8 +14,8 @@ public class AsignaturaController {
     }
 
     // Inserta una nueva asignatura
-    public static void insertar(String nombre) {
-        Asignatura a = new Asignatura(nombre);
+    public static void insertar(String nombre, String descripcion) {
+        Asignatura a = new Asignatura(nombre, descripcion);
         asignaturaDAO.insertarAsignatura(a);
     }
 
@@ -30,8 +30,8 @@ public class AsignaturaController {
     }
 
     // Actualiza una asignatura
-    public static void actualizar(int id, String nombre) {
-        Asignatura a = new Asignatura(id, nombre);
+    public static void actualizar(int id, String nombre, String descripcion) {
+        Asignatura a = new Asignatura(id, nombre, descripcion);
         asignaturaDAO.actualizarAsignatura(a);
     }
 }

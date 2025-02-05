@@ -8,6 +8,7 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body> 
+        <%@ include file="header.jsp" %>
         <!-- Contenedor principal -->
         <div class="main-container">
             <!-- Hero Section Reducida -->
@@ -54,4 +55,5 @@
 
                 <script src="js/bootstrap.min.js"></script>
                 </body>
+                <%@ include file="footer.jsp" %>
                 </html>
