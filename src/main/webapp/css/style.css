@@ -88,7 +88,7 @@ body {
 .styled-table td a.btn-edit {
     background-color: #009688;
     color: #fff;
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 .styled-table td a.btn-edit:hover {
@@ -322,5 +322,172 @@ footer .btn-outline {
 footer .btn-outline:hover {
     background-color: white; /* Fondo blanco cuando el ratón pasa sobre el botón */
     color: #008080; /* Texto teal cuando se pasa el ratón */
+}
+
+/* Hero para login */
+.hero-login {
+    background: linear-gradient(135deg, #00796b, #004d40); /* Transición de colores sutil */
+    padding: 50px 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.hero-login h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-login p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el contenedor de login */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+/* Formulario de login */
+.login-form {
+    width: 100%;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00796b;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #004d40;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el enlace de registro */
+a {
+    color: #00796b;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #004d40;
+}
+
+/* Hero para registro */
+.hero-register {
+    background: linear-gradient(135deg, #0288d1, #0277bd); /* Tonos azules */
+    padding: 50px 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.hero-register h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-register p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el contenedor de registro */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+/* Formulario de registro */
+.register-form {
+    width: 100%;
+}
+
+.register-form input,
+.register-form select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.register-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0288d1;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form button:hover {
+    background-color: #0277bd;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el enlace de login */
+a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0277bd;
 }
 

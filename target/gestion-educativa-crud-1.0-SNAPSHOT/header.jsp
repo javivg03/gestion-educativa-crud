@@ -5,9 +5,11 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ms-auto">
-                <button class="btn btn-custom me-2" onclick="window.location.href='/gestion-educativa-crud/asignaturas/asignaturas.jsp'">Asignaturas</button>
-                <button class="btn btn-custom me-2" onclick="window.location.href='/gestion-educativa-crud/resultados/resultados.jsp'">Resultados</button>
-                <button class="btn btn-custom me-2" onclick="window.location.href='/gestion-educativa-crud/criterios/criterios.jsp'">Criterios</button>
+                <button class="btn btn-custom me-2" onclick="window.location.href = '/gestion-educativa-crud/asignaturas/asignaturas.jsp'">Asignaturas</button>
+                <button class="btn btn-custom me-2" onclick="window.location.href = '/gestion-educativa-crud/resultados/resultados.jsp'">Resultados</button>
+                <button class="btn btn-custom me-2" onclick="window.location.href = '/gestion-educativa-crud/criterios/criterios.jsp'">Criterios</button>
+                <button class="btn btn-custom me-2" onclick="window.location.href = '/gestion-educativa-crud/logout.jsp'">Cerrar sesión</button>
+
             </div>
         </div>
     </div>

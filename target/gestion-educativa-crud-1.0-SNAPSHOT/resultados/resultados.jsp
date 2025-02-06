@@ -1,7 +1,9 @@
 <%@ page import="java.util.List, models.ResultadoAprendizaje, controller.ResultadoController, controller.AsignaturaController" %>
 <%
-    List<ResultadoAprendizaje> list = ResultadoController.listar();
-    AsignaturaController asignaturaController = new AsignaturaController(); // Instanciamos el controlador
+    // Instanciamos el controlador de asignaturas
+    AsignaturaController asignaturaController = new AsignaturaController();
+    // Obtenemos todas las asignaturas disponibles
+    List<models.Asignatura> asignaturas = asignaturaController.listar();
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,12 +12,51 @@
         <title>Gestión de Resultados de Aprendizaje</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
+        <script src="../js/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Cuando se cambie la asignatura
+                $('#asignaturaSelect').change(function() {
+                    var asignaturaId = $(this).val(); // Obtenemos el ID de la asignatura seleccionada
+                    
+                    // Realizamos una petición AJAX para obtener los resultados de la asignatura seleccionada
+                    $.ajax({
+                        url: 'obtenerResultados.jsp', // Página que procesará la solicitud
+                        method: 'GET',
+                        data: { asignaturaId: asignaturaId },
+                        success: function(response) {
+                            $('#resultadoSelect').html(response); // Actualizamos el desplegable de resultados
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <%@ include file="../header.jsp" %>
+
         <div class="main-container centered mt-30">
             <h1>Resultados de Aprendizaje</h1>
             <a href="nuevaRA.jsp" class="btn-custom mb-30">Nuevo Resultado</a>
+
+            <!-- Filtro de Asignatura -->
+            <div class="mb-30">
+                <label for="asignaturaSelect">Selecciona una Asignatura:</label>
+                <select id="asignaturaSelect" class="form-control">
+                    <option value="">Seleccione una asignatura</option>
+                    <% for (models.Asignatura asignatura : asignaturas) { %>
+                        <option value="<%= asignatura.getId() %>"><%= asignatura.getNombre() %></option>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- Filtro de Resultados -->
+            <div class="mb-30">
+                <label for="resultadoSelect">Selecciona un Resultado de Aprendizaje:</label>
+                <select id="resultadoSelect" class="form-control">
+                    <option value="">Seleccione un resultado</option>
+                </select>
+            </div>
 
             <!-- Tabla de Resultados -->
             <div class="table-container">
@@ -24,25 +65,14 @@
                         <tr>
                             <th>ID</th>
                             <th>Descripción</th>
-                            <th>Asignatura</th> <!-- Mostrar nombre de asignatura -->
+                            <th>Asignatura</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (models.ResultadoAprendizaje r : list) {
-                                // Obtenemos el nombre de la asignatura usando el ID del resultado
-                                models.Asignatura asignatura = asignaturaController.obtenerPorId(r.getAsignaturaId());
+                        <% 
+                            // Mostramos los resultados de aprendizaje según la asignatura seleccionada (esto será manejado por AJAX)
                         %>
-                        <tr>
-                            <td><%= r.getId()%></td>
-                            <td><%= r.getDescripcion()%></td>
-                            <td><%= asignatura != null ? asignatura.getNombre() : "No asignada"%></td> <!-- Mostramos el nombre de la asignatura -->
-                            <td>
-                                <a href="editarRA.jsp?id=<%= r.getId()%>" class="btn-custom btn-edit">Editar</a>
-                                <a href="eliminarRA.jsp?id=<%= r.getId()%>" class="btn-custom btn-delete" style="background-color:#d9534f;" onclick="return confirm('¿Está seguro de eliminar este resultado?');">Eliminar</a>
-                            </td>
-                        </tr>
-                        <% }%>
                     </tbody>
                 </table>
             </div>

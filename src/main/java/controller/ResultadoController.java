@@ -34,4 +34,10 @@ public class ResultadoController {
         ResultadoAprendizaje r = new ResultadoAprendizaje(id, descripcion, asignaturaId);
         resultadoDAO.actualizarResultado(r);
     }
+
+    // Método para obtener resultados filtrados por asignatura
+    public static List<ResultadoAprendizaje> listarPorAsignatura(int asignaturaId) {
+        return resultadoDAO.listarResultadosPorAsignatura(asignaturaId);
+    }
+
 }

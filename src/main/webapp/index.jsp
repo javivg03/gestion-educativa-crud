@@ -15,7 +15,7 @@
             <div class="hero">
                 <div class="hero-text">
                     <h1>Bienvenido a la Gestión Académica</h1>
-                    <p>Administra tus asignaturas, resultados de aprendizaje y criterios de evaluación de forma moderna.</p>
+                    <p>Administra tus asignaturas, resultados de aprendizaje y criterios de evaluación en un único sitio.</p>
                 </div>
             </div>
 
