@@ -1,6 +1,7 @@
 package models;
 
 public class CriterioEvaluacion {
+
     private int id;
     private String descripcion;
     private int resultadoId; // Clave foránea para relacionar con ResultadoAprendizaje

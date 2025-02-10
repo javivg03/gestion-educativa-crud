@@ -34,4 +34,9 @@ public class CriterioController {
         CriterioEvaluacion c = new CriterioEvaluacion(id, descripcion, resultadoId);
         criterioDAO.actualizarCriterio(c);
     }
+
+
+    public static List<CriterioEvaluacion> listarPorResultado(int resultadoId) {
+        return CriterioEvaluacionDAO.obtenerPorResultado(resultadoId);
+    }
 }

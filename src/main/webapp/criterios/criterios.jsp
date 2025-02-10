@@ -1,56 +1,100 @@
-<%@ page import="java.util.List, models.CriterioEvaluacion, controller.CriterioController, controller.ResultadoController" %>
+<%@ page import="java.util.List, models.Asignatura, controller.AsignaturaController, models.ResultadoAprendizaje, controller.ResultadoController, models.CriterioEvaluacion, controller.CriterioController" %>
 <%
-    List<models.CriterioEvaluacion> list = CriterioController.listar();
-    ResultadoController resultadoController = new ResultadoController(); // Instanciamos el controlador
+    // Obtener todas las asignaturas para llenar el dropdown
+    List<Asignatura> asignaturas = AsignaturaController.listar();
+    String asignaturaParam = request.getParameter("asignaturaId");
+    int asignaturaId = 0;
+    if (asignaturaParam != null && asignaturaParam.matches("\\d+")) {
+        asignaturaId = Integer.parseInt(asignaturaParam);
+    }
+
+    // Obtener todos los resultados de aprendizaje según la asignatura seleccionada
+    List<ResultadoAprendizaje> resultados = (asignaturaId > 0) ? ResultadoController.listarPorAsignatura(asignaturaId) : null;
+
+    // Obtener el resultado seleccionado para filtrar criterios
+    String resultadoParam = request.getParameter("resultadoId");
+    int resultadoId = 0;
+    if (resultadoParam != null && resultadoParam.matches("\\d+")) {
+        resultadoId = Integer.parseInt(resultadoParam);
+    }
+
+    // Obtener los criterios filtrados
+    List<CriterioEvaluacion> criterios = (resultadoId > 0) ? CriterioController.listarPorResultado(resultadoId) : null;
 %>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Gestión de Criterios de Evaluación</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <%@ include file="../header.jsp" %>
-        <div class="main-container mt-30 centered">
-            <h1>Criterios de Evaluación</h1>
-            <a href="nuevaCriterio.jsp" class="btn-custom mb-30">Nuevo Criterio</a>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Criterios de Evaluación</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <%@ include file="../header.jsp" %>
+    <div class="main-container centered mt-30">
+        <h1>Criterios de Evaluación</h1>
+        <a href="nuevaCriterio.jsp" class="btn-custom mb-30">Nuevo Criterio</a>
 
-            <!-- Tabla de Criterios -->
-            <div class="table-container">
-                <table class="styled-table">
-                    <thead>
+        <!-- Filtro por asignatura -->
+        <form action="criterios.jsp" method="GET" class="mb-30">
+            <label for="asignaturaId">Selecciona una Asignatura:</label>
+            <select name="asignaturaId" id="asignaturaId" class="form-control" onchange="this.form.submit()">
+                <option value="">-- Seleccione --</option>
+                <% for (Asignatura asig : asignaturas) { %>
+                    <option value="<%= asig.getId() %>" <%= (asignaturaId == asig.getId()) ? "selected" : "" %>>
+                        <%= asig.getNombre() %>
+                    </option>
+                <% } %>
+            </select>
+        </form>
+
+        <!-- Filtro por resultado de aprendizaje -->
+        <% if (asignaturaId > 0 && resultados != null) { %>
+        <form action="criterios.jsp" method="GET" class="mb-30">
+            <input type="hidden" name="asignaturaId" value="<%= asignaturaId %>">
+            <label for="resultadoId">Selecciona un Resultado de Aprendizaje:</label>
+            <select name="resultadoId" id="resultadoId" class="form-control" onchange="this.form.submit()">
+                <option value="">-- Seleccione --</option>
+                <% for (ResultadoAprendizaje r : resultados) { %>
+                    <option value="<%= r.getId() %>" <%= (resultadoId == r.getId()) ? "selected" : "" %>>
+                        <%= r.getDescripcion() %>
+                    </option>
+                <% } %>
+            </select>
+        </form>
+        <% } %>
+
+        <!-- Tabla de Criterios -->
+        <div class="table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (criterios != null && !criterios.isEmpty()) {
+                        for (CriterioEvaluacion c : criterios) { %>
                         <tr>
-                            <th>ID</th>
-                            <th>Descripción</th>
-                            <th>Resultado de aprendizaje</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (models.CriterioEvaluacion c : list) {
-                                // Obtenemos la descripción del resultado usando el ID del criterio
-                                models.ResultadoAprendizaje resultado = resultadoController.obtenerPorId(c.getResultadoId());
-                        %>
-                        <tr>
-                            <td><%= c.getId()%></td>
-                            <td><%= c.getDescripcion()%></td>
-                            <td><%= resultado != null ? resultado.getDescripcion() : "No asignado"%></td> <!-- Mostramos la descripción del resultado -->
+                            <td><%= c.getId() %></td>
+                            <td><%= c.getDescripcion() %></td>
                             <td>
-                                <a href="editarCriterio.jsp?id=<%= c.getId()%>" class="btn-custom btn-edit">Editar</a>
-                                <a href="eliminarCriterio.jsp?id=<%= c.getId()%>" class="btn-custom btn-delete" style="background-color:#d9534f;" onclick="return confirm('¿Está seguro de eliminar este criterio?');">Eliminar</a>
+                                <a href="editarCriterio.jsp?id=<%= c.getId() %>" class="btn-custom btn-edit">Editar</a>
+                                <a href="eliminarCriterio.jsp?id=<%= c.getId() %>" class="btn-custom btn-delete" onclick="return confirm('¿Eliminar este criterio?');">Eliminar</a>
                             </td>
                         </tr>
-                        <% }%>
-                    </tbody>
-                </table>
-            </div>
-
-            <a href="../index.jsp" class="btn-custom mt-30">Volver al Inicio</a>
+                    <% } 
+                    } else { %>
+                        <tr><td colspan="3">No se encontraron criterios para el resultado seleccionado.</td></tr>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
-
-        <script src="../js/bootstrap.min.js"></script>
-        <%@ include file="../footer.jsp" %>
-    </body>
+        <a href="../index.jsp" class="btn-custom mt-30">Volver al Inicio</a>
+    </div>
+    <script src="../js/bootstrap.min.js"></script>
+    <%@ include file="../footer.jsp" %>
+</body>
 </html>
