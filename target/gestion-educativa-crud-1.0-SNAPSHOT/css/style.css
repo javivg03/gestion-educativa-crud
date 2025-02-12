@@ -11,6 +11,7 @@ body {
     padding: 0;
     line-height: 1.6;
     overflow-x: hidden;
+    height: 100%;
 }
 
 /* Contenedor principal para centrar el contenido */
@@ -83,6 +84,8 @@ body {
     padding: 6px 12px;
     border-radius: 0.25rem;
     transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Asegura que los botones estén en línea */
+    margin-right: 10px; /* Espacio entre los botones */
 }
 
 .styled-table td a.btn-edit {
@@ -212,6 +215,7 @@ body {
     justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 .btn-container a {
@@ -296,32 +300,35 @@ a:hover {
     color: white; /* Sin cambio de color al hacer hover */
 }
 
-/* Estilos personalizados para el footer */
 footer {
     width: 100%; /* Asegura que ocupe todo el ancho */
-    position: fixed; /* Fijo en la parte inferior */
+    position: absolute; /* Absolute para que no se sobreponga al contenido */
     bottom: 0;
     left: 0;
-    right: 0;
     background-color: #008080; /* Color de fondo teal */
-    color: white; 
+    color: white;
     padding: 15px 0;
     text-align: center;
+    display: none; /* Ocultamos inicialmente el footer */
+}
+
+footer.show {
+    display: block; /* Lo mostramos cuando el contenido llega al fondo */
 }
 
 footer .btn-outline {
-    color: white; 
-    border-color: white; 
-    background-color: transparent; 
+    color: white;
+    border-color: white;
+    background-color: transparent;
     margin-right: 10px;
-    padding: 10px 20px; 
-    font-size: 14px; 
-    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 footer .btn-outline:hover {
-    background-color: white; /* Fondo blanco cuando el ratón pasa sobre el botón */
-    color: #008080; /* Texto teal cuando se pasa el ratón */
+    background-color: white;
+    color: #008080;
 }
 
 /* Hero para login */
@@ -358,6 +365,7 @@ footer .btn-outline:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-top: 50px;
+    box-sizing: border-box; /* Asegura que el padding no sume al tamaño del elemento */
 }
 
 /* Formulario de login */
@@ -372,8 +380,12 @@ footer .btn-outline:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no se sume al ancho total */
+    max-width: 100%; /* Evita que el input se expanda más allá del contenedor */
+    height: 40px; /* Establece una altura máxima para el campo de texto */
 }
 
+/* Ajustes para el botón */
 .login-form button {
     width: 100%;
     padding: 12px;
@@ -441,6 +453,7 @@ a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-top: 50px;
+    box-sizing: border-box; /* Asegura que el padding no sume al tamaño del elemento */
 }
 
 /* Formulario de registro */
@@ -456,8 +469,12 @@ a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no se sume al ancho total */
+    max-width: 100%; /* Evita que el input se expanda más allá del contenedor */
+    height: 40px; /* Establece una altura máxima para el campo de texto */
 }
 
+/* Ajustes para el botón */
 .register-form button {
     width: 100%;
     padding: 12px;

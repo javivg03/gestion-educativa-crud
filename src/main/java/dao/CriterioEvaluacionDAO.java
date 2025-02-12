@@ -112,5 +112,30 @@ public class CriterioEvaluacionDAO {
         }
         return criterios;
     }
+// Método para listar los criterios de evaluación por asignatura
+
+    public static List<CriterioEvaluacion> obtenerPorAsignatura(int asignaturaId) {
+        List<CriterioEvaluacion> criterios = new ArrayList<>();
+        String sql = "SELECT c.* FROM criterios_evaluacion c "
+                + "INNER JOIN resultados_aprendizaje r ON c.resultado_id = r.id "
+                + "WHERE r.asignatura_id = ?";
+
+        try (Connection conn = Database.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, asignaturaId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                CriterioEvaluacion criterio = new CriterioEvaluacion(
+                        rs.getInt("id"),
+                        rs.getString("descripcion"),
+                        rs.getInt("resultado_id")
+                );
+                criterios.add(criterio);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return criterios;
+    }
 
 }

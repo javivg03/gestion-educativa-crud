@@ -55,5 +55,5 @@
 
                 <script src="js/bootstrap.min.js"></script>
                 </body>
-                <%@ include file="footer.jsp" %>
+                <%@ include file="../footer.jsp" %>
                 </html>

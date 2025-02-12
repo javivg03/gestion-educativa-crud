@@ -34,8 +34,10 @@
                             <td><%= a.getNombre()%></td>
                             <td><%= a.getDescripcion()%></td> 
                             <td>
-                                <a href="editarAsignatura.jsp?id=<%= a.getId()%>" class="btn-custom btn-edit">Editar</a>
-                                <a href="eliminarAsignatura.jsp?id=<%= a.getId()%>" class="btn-custom btn-delete" style="background-color:#d9534f;" onclick="return confirm('¿Está seguro de eliminar esta asignatura?');">Eliminar</a>
+                                <div class="btn-container">
+                                    <a href="editarAsignatura.jsp?id=<%= a.getId()%>" class="btn-custom btn-edit">Editar</a>
+                                    <a href="eliminarAsignatura.jsp?id=<%= a.getId()%>" class="btn-custom btn-delete" onclick="return confirm('¿Eliminar esta asignatura?');">Eliminar</a>
+                                </div>
                             </td>
                         </tr>
                         <% }%>
@@ -47,6 +49,5 @@
         </div>
 
         <script src="../js/bootstrap.min.js"></script>
-        <%@ include file="../footer.jsp" %>
     </body>
 </html>

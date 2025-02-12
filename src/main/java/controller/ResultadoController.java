@@ -39,5 +39,6 @@ public class ResultadoController {
     public static List<ResultadoAprendizaje> listarPorAsignatura(int asignaturaId) {
         return resultadoDAO.listarResultadosPorAsignatura(asignaturaId);
     }
+    
 
 }

@@ -20,7 +20,7 @@
             <h1>Resultados de Aprendizaje</h1>
             <a href="nuevaRA.jsp" class="btn-custom mb-30">Nuevo Resultado</a>
 
-            <form action="resultados.jsp" method="GET" class="mb-30">
+            <form action="resultados.jsp" method="GET" class="mb-30 mt-30">
                 <label for="asignaturaId">Selecciona una Asignatura:</label>
                 <select name="asignaturaId" id="asignaturaId" class="form-control" onchange="this.form.submit()">
                     <option value="">-- Seleccione --</option>
@@ -44,14 +44,16 @@
                     </thead>
                     <tbody>
                         <% for (ResultadoAprendizaje r : resultados) {
-                            Asignatura a = AsignaturaController.obtenerPorId(r.getAsignaturaId());%>
+                                Asignatura a = AsignaturaController.obtenerPorId(r.getAsignaturaId());%>
                         <tr>
                             <td><%= r.getId()%></td>
                             <td><%= r.getDescripcion()%></td>
                             <td><%= a != null ? a.getNombre() : "No asignada"%></td>
                             <td>
-                                <a href="editarRA.jsp?id=<%= r.getId()%>" class="btn-custom btn-edit">Editar</a>
-                                <a href="eliminarRA.jsp?id=<%= r.getId()%>" class="btn-custom btn-delete" onclick="return confirm('¿Eliminar este resultado?');">Eliminar</a>
+                                <div class="btn-container">
+                                    <a href="editarRA.jsp?id=<%= r.getId()%>" class="btn-custom btn-edit">Editar</a>
+                                    <a href="eliminarRA.jsp?id=<%= r.getId()%>" class="btn-custom btn-delete" onclick="return confirm('¿Eliminar este resultado?');">Eliminar</a>
+                                </div>
                             </td>
                         </tr>
                         <% }%>
@@ -59,7 +61,6 @@
                 </table>
             </div>
             <a href="../index.jsp" class="btn-custom mt-30">Volver al Inicio</a>
-
         </div>
     </body>
 </html>

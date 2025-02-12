@@ -35,8 +35,13 @@ public class CriterioController {
         criterioDAO.actualizarCriterio(c);
     }
 
-
     public static List<CriterioEvaluacion> listarPorResultado(int resultadoId) {
         return CriterioEvaluacionDAO.obtenerPorResultado(resultadoId);
     }
+
+    // Método en el controlador para listar criterios de una asignatura
+    public static List<CriterioEvaluacion> listarPorAsignatura(int asignaturaId) {
+        return CriterioEvaluacionDAO.obtenerPorAsignatura(asignaturaId);
+    }
+
 }

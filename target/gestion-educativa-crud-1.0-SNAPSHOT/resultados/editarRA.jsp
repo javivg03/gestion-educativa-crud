@@ -47,6 +47,5 @@
         </div>
 
         <script src="../js/bootstrap.min.js"></script>
-        <%@ include file="../footer.jsp" %>
     </body>
 </html>
