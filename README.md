@@ -72,16 +72,23 @@ El proyecto gestiona tres entidades principales:
 2. Configura el archivo `Database.java` para establecer la conexión JDBC con la base de datos.
 
 ```java
+package util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Database {
+    private static final String URL = "jdbc:mysql://localhost:3306/crud_practica";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
     public static Connection conectar() {
         try {
-            String url = "jdbc:mysql://localhost:3306/gestion_academica";
-            String usuario = "root";  // Cambia esto según tu configuración
-            String password = "password";  // Cambia esto según tu configuración
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(url, usuario, password);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
             return null;
         }
     }
